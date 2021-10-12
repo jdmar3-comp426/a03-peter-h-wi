@@ -19,10 +19,23 @@ see under the methods section
  *
  * @param {allCarStats.ratioHybrids} ratio of cars that are hybrids
  */
+
 export const allCarStats = {
-    avgMpg: undefined,
-    allYearStats: undefined,
-    ratioHybrids: undefined,
+    avgMpg: {
+        city: mpg_data.reduce(
+            ( previousValue, currentValue ) => previousValue["city_mpg"] + currentValue["city_mpg"],
+            0
+        ) / mpg_data.length,
+        highway: mpg_data.reduce(
+            ( previousValue, currentValue ) => previousValue["highway_mpg"] + currentValue["highway_mpg"],
+            0
+        ) / mpg_data.length
+    },
+    allYearStats: mpg_data.reduce(function ( acc, obj ) {
+        acc.push(obj["year"])
+        return acc;
+    }, []),
+    ratioHybrids: (mpg_data.filter(car => car["hybrid"] == true).length)/(mpg_data.length),
 };
 
 
@@ -84,6 +97,44 @@ export const allCarStats = {
  * }
  */
 export const moreStats = {
-    makerHybrids: undefined,
-    avgMpgByYearAndHybrid: undefined
+    makerHybrids: mpg_data.reduce( function ( acc, obj ) {
+        let maker = obj["make"]
+        let ids = mpg_data.reduce( function ( acc2, obj2 ) {
+            let isHybrid = obj2["hybrid"];
+            if (isHybrid && maker == obj2["make"]) {
+                acc2.push(obj2["id"]);
+            }
+        }, [])
+        let newObj = {"make": maker, "hybrids": ids};
+        acc.push(newObj);
+    }, []),
+    avgMpgByYearAndHybrid: mpg_data.reduce( function ( acc, obj ) {
+        let year = obj["year"];
+
+        if (acc[year]) {
+            continue;
+        }
+
+        let hybrids = mpg_data.filter(car => car["year"] == year && car.hybrid == true);
+        let noHybrids = mpg_data.filter(car => car["year"] == year && car.hybrid == false);
+        let hybridsCityMpg = hybrids.reduce(
+            ( previousValue, currentValue ) => previousValue["city_mpg"] + currentValue["city_mpg"],
+            0
+        ) / hybrids.length;
+        let hybridsHighwayMpg = hybrids.reduce(
+            ( previousValue, currentValue ) => previousValue["highway_mpg"] + currentValue["highway_mpg"],
+            0
+        ) / hybrids.length;
+        let noHybridsCityMpg = noHybrids.reduce(
+            ( previousValue, currentValue ) => previousValue["city_mpg"] + currentValue["city_mpg"],
+            0
+        ) / noHybrids.length;
+        let noHybridsHighwayMpg = noHybrids.reduce(
+            ( previousValue, currentValue ) => previousValue["highway_mpg"] + currentValue["highway_mpg"],
+            0
+        ) / noHybrids.length;
+        let mpgs = {hybrid: {city: hybridsCityMpg, highway: hybridsHighwayMpg}, noHybrid: {city: noHybridsCityMpg, highway: noHybridsHighwayMpg}};
+        
+        acc[year] = mpgs;
+    }, {}),
 };
