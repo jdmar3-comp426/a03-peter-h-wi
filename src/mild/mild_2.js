@@ -8,8 +8,8 @@
 export function identifyVariable(variable) {
    let dict = new object();
    dict = {
-      type = typeof(variable),
-      value = variable
+      type: typeof(variable),
+      value: variable
    };
    return dict;
 }
@@ -54,6 +54,7 @@ export function identifyArray(array) {
  */
 export function removeKey(object, key) {
    delete object[key];
+   return;
 }
 
 /**
@@ -73,8 +74,8 @@ export function removeKey(object, key) {
  If only `removeKeyNonDestructive` was called, nothing would have changed.
  */
 export function removeKeyNonDestructive(object, key) {
-   let {key: omit, ...res} = object;
-   return res;
+   let {key, ...rest} = object;
+   return rest;
 }
 
 /**
@@ -99,6 +100,6 @@ export function removeKeyNonDestructive(object, key) {
  * @return {*} The object with its keys removed.
  */
 export function removeKeys(object, keyList) {
-   let {keyList: omit, ...res} = object;
+   let {...keyList, ...res} = object;
    return res;
 }
