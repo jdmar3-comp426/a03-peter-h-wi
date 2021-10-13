@@ -33,7 +33,6 @@ export const allCarStats = {
     },
     allYearStats: mpg_data.reduce(function ( acc, obj ) {
         acc.push(obj["year"])
-        return acc;
     }, []),
     ratioHybrids: (mpg_data.filter(car => car["hybrid"] == true).length)/(mpg_data.length),
 };
