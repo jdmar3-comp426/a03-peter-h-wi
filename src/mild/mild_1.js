@@ -43,7 +43,7 @@ export function maxAndMin(numbers) {
 
     let minNum = Math.min(...numbers);
     let maxNum = Math.max(...numbers);
-    dict = {min: minNum, max: maxNum};
+    dict = {max: maxNum, min: minNum};
     return dict;
 }
 
