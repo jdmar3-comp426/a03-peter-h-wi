@@ -8,7 +8,7 @@
 export function identifyVariable(variable) {
    let dict = new object();
    dict = {
-      type: typeof(variable),
+      type: typeof variable,
       value: variable
    };
    return dict;
@@ -29,11 +29,9 @@ export function identifyVariable(variable) {
 
  */
 export function identifyArray(array) {
-   let arr = []
-   array.forEach(element => {
-      arr.push(identifyVariable(element));
-   });
-   return arr;
+   return array.reduce(function ( acc, obj ) {
+      acc.push(identifyVariable(obj));
+   }, []);
 }
 
 /**
