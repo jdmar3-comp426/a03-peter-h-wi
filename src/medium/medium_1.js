@@ -33,9 +33,12 @@ export function getSum(array) {
  */
 export function getMedian(array) {
     let indexOfMedian = (array.length)/2;
-    let arr = array.sort();
-    return arr[indexOfMedian];
+    array.sort(function(a, b) {
+        return a - b;
+    });
+    return array[indexOfMedian];
     /*
+    [14,8,5,7,7,5,2,7,5,3,47,9]
     let count = 0;
     array.forEach(element => {
         sum += element;
