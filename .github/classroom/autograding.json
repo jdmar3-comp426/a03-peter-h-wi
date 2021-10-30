@@ -92,8 +92,8 @@
     },
     {
       "name": "getSum(array) from medium_1",
-      "setup": "npm install --silent esm",
-      "run": "node -r esm --eval \"import {getSum} from './src/medium/medium_1.js'; console.log(getSum([14,8,5,7,7,5,2,7,5,3,47,9]));\"",
+      "setup": "",
+      "run": "node --experimental-modules --input-type=module --eval \"import {getSum} from './src/medium/medium_1.js'; console.log(getSum([14,8,5,7,7,5,2,7,5,3,47,9]));\"",
       "input": "",
       "output": "119",
       "comparison": "exact",
