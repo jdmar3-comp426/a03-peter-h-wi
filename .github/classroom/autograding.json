@@ -115,7 +115,7 @@
       "setup": "",
       "run": "node --experimental-modules --input-type=module --eval \"import {getStatistics} from './src/medium/medium_1.js'; console.log(getStatistics([14,8,5,7,7,5,2,7,5,3,47,9]));\"",
       "input": "",
-      "output": "{\r\n  length: 12,\r\n  sum: 119,\r\n  mean: 9.916666666666666,\r\n  median: 7,\r\n  min: 2,\r\n  max: 47,\r\n  variance: 133.74305555555557,\r\n  standard_deviation: 11.564733267808451\r\n}",
+      "output": "{\r\n  length: 12,\r\n  sum: 119,\r\n  mean: 9.916666666666666,\r\n  median: 7,\r\n  min: 2,\r\n  max: 47,\r\n  variance: 133.74305555555557,\r\n  standard_deviation: 11.564733267808453\r\n}",
       "comparison": "exact",
       "timeout": 10,
       "points": 3
