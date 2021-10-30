@@ -27,18 +27,18 @@ export function identifyVariable(variable) {
 
  */
 export function identifyArray(array) {
-   let acc = []
-   for (let i = 0; i < array.length; ++i) {
-      acc.push(identifyVariable(array[i]))
-   }
-   return acc;
+   // let acc = []
+   // for (let i = 0; i < array.length; ++i) {
+   //    acc.push(identifyVariable(array[i]))
+   // }
+   // return acc;
    
-  /* doesn't print when the type is undefined.
+   // doesn't print when the type is undefined.
    return array.reduce(function ( acc, obj ) {
       acc.push(identifyVariable(obj));
       return acc;
    }, []);
-   */ 
+    
 }
 
 /**
