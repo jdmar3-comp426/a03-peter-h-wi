@@ -55,7 +55,7 @@
       "setup": "",
       "run": "node --experimental-modules --input-type=module --eval \"import {identifyArray} from './src/mild/mild_2.js'; console.log(identifyArray([ 13, 14, 16, 16, 17, 18, 16, 14, 21, 13 ]));\"",
       "input": "",
-      "output": "[\r\n { type: 'number', value: 13 },\r\n  { type: 'number', value: 14 },\r\n  { type: 'number', value: 16 },\r\n  { type: 'number', value: 16 },\r\n  { type: 'number', value: 17 },\r\n  { type: 'number', value: 18 },\r\n  { type: 'number', value: 16 },\r\n  { type: 'number', value: 14 },\r\n  { type: 'number', value: 21 },\r\n  { type: 'number', value: 13 } \r\n]",
+      "output": "[\r\n  { type: 'number', value: 13 },\r\n  { type: 'number', value: 14 },\r\n  { type: 'number', value: 16 },\r\n  { type: 'number', value: 16 },\r\n  { type: 'number', value: 17 },\r\n  { type: 'number', value: 18 },\r\n  { type: 'number', value: 16 },\r\n  { type: 'number', value: 14 },\r\n  { type: 'number', value: 21 },\r\n  { type: 'number', value: 13 }\r\n]",
       "comparison": "exact",
       "timeout": 10,
       "points": 3
