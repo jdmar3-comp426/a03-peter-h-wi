@@ -32,11 +32,14 @@ export const allCarStats = {
         ) / mpg_data.length
     },
     allYearStats: mpg_data.reduce(function ( acc, obj ) {
-        acc.push(obj["year"])
+        if (acc.indexOf(obj["year"])<0) {
+            acc.push(obj["year"]);
+        }
+        return acc;
     }, []),
     ratioHybrids: (mpg_data.filter(car => car["hybrid"] == true).length)/(mpg_data.length),
 };
-
+console.log(allCarStats)
 
 /**
  * HINT: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce
@@ -111,7 +114,7 @@ export const moreStats = {
         let year = obj["year"];
 
         if (acc[year]) {
-            continue;
+            return;
         }
 
         let hybrids = mpg_data.filter(car => car["year"] == year && car.hybrid == true);
