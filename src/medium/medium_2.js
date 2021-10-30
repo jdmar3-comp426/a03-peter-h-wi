@@ -35,7 +35,6 @@ export const allCarStats = {
     }, [])),
     ratioHybrids: (mpg_data.filter(car => car["hybrid"] == true).length)/(mpg_data.length),
 };
-console.log(allCarStats)
 
 /**
  * HINT: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce

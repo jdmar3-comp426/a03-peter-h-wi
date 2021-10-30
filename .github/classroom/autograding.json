@@ -125,7 +125,7 @@
       "setup": "",
       "run": "node --experimental-modules --input-type=module --eval \"import {allCarStats} from './src/medium/medium_2.js'; console.log(allCarStats);\"",
       "input": "",
-      "output": "{ avgMpg: { city: 17.275807722616232, highway: 24.125492513790388 },\r\n  allYearStats:\r\n   { length: 5076,\r\n     sum: 10207164,\r\n     mean: 2010.8676122931442,\r\n     median: 2011,\r\n     min: 2009,\r\n     max: 2012,\r\n     variance: 0.6128911467677238,\r\n     standard_deviation: 0.7828736467449418 },\r\n  ratioHybrids: 0.012411347517730497 }",
+      "output": "{\r\n  avgMpg: { city: 17.275807722616232, highway: 24.125492513790388 },\r\n  allYearStats:\r\n   { length: 5076,\r\n     sum: 10207164,\r\n     mean: 2010.8676122931442,\r\n     median: 2011,\r\n     min: 2009,\r\n     max: 2012,\r\n     variance: 0.6128911467677238,\r\n     standard_deviation: 0.7828736467449418\r\n  },\r\n  ratioHybrids: 0.012411347517730497\r\n}",
       "comparison": "exact",
       "timeout": 10,
       "points": 4
