@@ -27,7 +27,7 @@ export function identifyVariable(variable) {
 
  */
 export function identifyArray(array) {
-   let acc = new Array();
+   let acc = [];
    for (let i = 0; i < array.length; ++i) {
       acc.push(identifyVariable(array[i]))
    }

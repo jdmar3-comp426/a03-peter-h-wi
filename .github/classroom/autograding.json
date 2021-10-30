@@ -55,7 +55,7 @@
       "setup": "",
       "run": "node --experimental-modules --input-type=module --eval \"import {identifyArray} from './src/mild/mild_2.js'; console.log(identifyArray([ 13, 14, 16, 16, 17, 18, 16, 14, 21, 13 ]));\"",
       "input": "",
-      "output": "[ { type: 'number', value: 13 },\r\n  { type: 'number', value: 14 },\r\n  { type: 'number', value: 16 },\r\n  { type: 'number', value: 16 },\r\n  { type: 'number', value: 17 },\r\n  { type: 'number', value: 18 },\r\n  { type: 'number', value: 16 },\r\n  { type: 'number', value: 14 },\r\n  { type: 'number', value: 21 },\r\n  { type: 'number', value: 13 } ]",
+      "output": "[\r\n { type: 'number', value: 13 },\r\n  { type: 'number', value: 14 },\r\n  { type: 'number', value: 16 },\r\n  { type: 'number', value: 16 },\r\n  { type: 'number', value: 17 },\r\n  { type: 'number', value: 18 },\r\n  { type: 'number', value: 16 },\r\n  { type: 'number', value: 14 },\r\n  { type: 'number', value: 21 },\r\n  { type: 'number', value: 13 } \r\n]",
       "comparison": "exact",
       "timeout": 10,
       "points": 3
@@ -73,7 +73,7 @@
     {
       "name": "removeKeyNonDestructive(object, key) from mild_2",
       "setup": "",
-      "run": "node --experimental-modules --input-type=module --eval \"import {removeKeyNonDestructive} from './src/mild/mild_2.js'; let idrecord = { name: 'John Martin', title: 'Instructor', age: 41, password: 'supersecretpassword' }; newrecord = removeKeyNonDestructive(idrecord, 'age'); console.log(idrecord); console.log(newrecord);\"",
+      "run": "node --experimental-modules --input-type=module --eval \"import {removeKeyNonDestructive} from './src/mild/mild_2.js'; let idrecord = { name: 'John Martin', title: 'Instructor', age: 41, password: 'supersecretpassword' }; let newrecord = removeKeyNonDestructive(idrecord, 'age'); console.log(idrecord); console.log(newrecord);\"",
       "input": "",
       "output": "{ name: 'John Martin',\r\n  title: 'Instructor',\r\n  age: 41,\r\n  password: 'supersecretpassword' }\r\n{ name: 'John Martin',\r\n  title: 'Instructor',\r\n  password: 'supersecretpassword' }",
       "comparison": "exact",
@@ -83,7 +83,7 @@
     {
       "name": "removeKeys(object, keyList) from mild_2",
       "setup": "",
-      "run": "node --experimental-modules --input-type=module --eval \"import {removeKeys} from './src/mild/mild_2.js'; let idrecord = { name: 'John Martin', title: 'Instructor', age: 41, password: 'supersecretpassword' }; newrecord = removeKeys(idrecord, [ 'age', 'password' ]); console.log(idrecord); console.log(newrecord);\"",
+      "run": "node --experimental-modules --input-type=module --eval \"import {removeKeys} from './src/mild/mild_2.js'; let idrecord = { name: 'John Martin', title: 'Instructor', age: 41, password: 'supersecretpassword' }; let newrecord = removeKeys(idrecord, [ 'age', 'password' ]); console.log(idrecord); console.log(newrecord);\"",
       "input": "",
       "output": "{ name: 'John Martin',\r\n  title: 'Instructor',\r\n  age: 41,\r\n  password: 'supersecretpassword' }\r\n{ name: 'John Martin', title: 'Instructor' }",
       "comparison": "exact",
