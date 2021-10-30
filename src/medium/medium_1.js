@@ -32,9 +32,9 @@ export function getSum(array) {
  * console.log(getMedian(array)); // 4.3
  */
 export function getMedian(array) {
-    let length = array.length;
-    let sum = getSum(array);
-    return sum / length;
+    let indexOfMedian = (array.length)/2;
+    let arr = array.sort();
+    return arr[indexOfMedian];
     /*
     let count = 0;
     array.forEach(element => {
@@ -70,11 +70,11 @@ export function getStatistics(array) {
     let length = array.length;
     let sum = getSum(array);
     let mean = sum / length;
-    let median = array.sort()[Math.ceil(length/2)];
+    let median = array.sort()[length/2];
     let min = Math.min(...array);
     let max = Math.max(...array);
-    let vari = variance(array, mean);
-    let stddevi = Math.pow(vari, 0.5);
-    return {length, sum, mean, median, min, max, vari, stddevi};
+    let variance = variance(array, mean);
+    let standard_deviation = Math.sqrt(variance);
+    return {length, sum, mean, median, min, max, variance, standard_deviation};
 }
 
