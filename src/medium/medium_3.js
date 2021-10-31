@@ -21,7 +21,6 @@ export function searchHighPower(car_data, minHorsepower, minTorque) {
     return car_data.filter(car => car["torque"] >= minTorque && car["horsepower"] >= minHorsepower).sort((a, b) => b["horsepower"] - a["horsepower"]);
 }
 
-
 /**
  * @param {array} car_data
  * @param minCity
@@ -36,7 +35,6 @@ export function searchMpg(car_data, minCity, minHighway) {
     return car_data.filter(car => car["highway_mpg"] >= minHighway && car["city_mpg"] >= minCity).sort((a, b) => b["highway_mpg"] - a["highway_mpg"]);
 }
 
-
 /**
  * Find all cars where 'id' contains the search term below.
  * Sort the results so that if the term appears earlier in the string
@@ -49,7 +47,6 @@ export function searchName(car_data, searchTerm) {
     return car_data.filter(car => car["id"].includes(searchTerm)).sort((a, b) => a["id"] - b["id"]);
 }
 
-
 /**
  * Find all cars made in the years asked for.
  * Sort the results by year in descending order.
@@ -59,12 +56,11 @@ export function searchName(car_data, searchTerm) {
  * @returns {[]} an array of car objects
  */
 export function searchByYear(car_data, years) {
-    return years.reduce(function (acc, obj) {
-        let year = obj;
-        let cars = car_data.filter(car => car["year"] == year)
-        
-        if (!acc[year]) {
-            acc[year] = cars;
-        }
-    }, {}).sort((a, b) => b - a);
+    let dict = {}
+    years.sort((a, b) => a - b);
+    years.forEach(car_year => {
+        dict[car_year] = car_data.filter(car => car.year == car_year);
+    });
+
+    return dict;
 }
