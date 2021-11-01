@@ -23,6 +23,7 @@ export const repeat = (fn, n, ...params) => {
 };
 
 
+
 /**
  * Use the repeat function to log the string "Hello, world!" to the console
  *   10 times.
@@ -65,7 +66,6 @@ export const tenTimes = multiplyBy(10);
 export const tenTimesFifty = () => {
     return tenTimes(50);
 };
-
 
 /**************************************************************************
  *
@@ -134,7 +134,6 @@ export const someEven = (arr, test) => {
     return false;
 };
 
-
 /**
  * Write and export a function named "filter" which takes an array and a test
  *   function for checking individual elements of the array. The "filter"
@@ -161,15 +160,16 @@ export const filter = (arr, test) => {
         if (test(obj) === true) {
             acc.push(obj);
         }
+        return acc;
     },[])
     let fails = arr.reduce(function ( acc, obj ) {
         if (test(obj) === false) {
             acc.push(obj);
         }
+        return acc;
     },[])
     return {pass: passes, fail: fails};
 };
-
 
 /**
  * Write and export a function named "allEvensAreOdd" which takes as input an
@@ -179,7 +179,6 @@ export const filter = (arr, test) => {
 export const allEvensAreOdd = (arr) => {
     return everyEven(arr, x => x%2 === 1);
 };
-
 
 /**
  * Write and export a function named "anEvenIsOdd" which takes as input an
@@ -198,6 +197,11 @@ export const anEvenIsOdd = (arr) => {
  *   pass the test. You must use the filter function.
  */
 export const hasExactly = (arr, test, n) => {
-
-    return filter(arr, test).pass.length === n;
+    var count = 0;
+    arr.forEach(element => {
+        if (test(element)) {
+            ++count;
+        }
+    });
+    return count == n;
 };
