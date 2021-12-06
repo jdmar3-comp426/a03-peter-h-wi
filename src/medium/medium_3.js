@@ -18,9 +18,8 @@ queries.
  *
  */
 export function searchHighPower(car_data, minHorsepower, minTorque) {
-
+    return car_data.filter(car => car["torque"] >= minTorque && car["horsepower"] >= minHorsepower).sort((a, b) => b["horsepower"] - a["horsepower"]);
 }
-
 
 /**
  * @param {array} car_data
@@ -33,9 +32,8 @@ export function searchHighPower(car_data, minHorsepower, minTorque) {
  *
  */
 export function searchMpg(car_data, minCity, minHighway) {
-
+    return car_data.filter(car => car["highway_mpg"] >= minHighway && car["city_mpg"] >= minCity).sort((a, b) => b["highway_mpg"] - a["highway_mpg"]);
 }
-
 
 /**
  * Find all cars where 'id' contains the search term below.
@@ -46,9 +44,8 @@ export function searchMpg(car_data, minCity, minHighway) {
  * @returns {[]} array of cars
  */
 export function searchName(car_data, searchTerm) {
-
+    return car_data.filter(car => car["id"].includes(searchTerm)).sort((a, b) => a["id"] - b["id"]);
 }
-
 
 /**
  * Find all cars made in the years asked for.
@@ -59,5 +56,11 @@ export function searchName(car_data, searchTerm) {
  * @returns {[]} an array of car objects
  */
 export function searchByYear(car_data, years) {
+    let dict = {}
+    years.sort((a, b) => a - b);
+    years.forEach(car_year => {
+        dict[car_year] = car_data.filter(car => car.year == car_year);
+    });
 
+    return dict;
 }

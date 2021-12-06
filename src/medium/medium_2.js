@@ -19,12 +19,22 @@ see under the methods section
  *
  * @param {allCarStats.ratioHybrids} ratio of cars that are hybrids
  */
-export const allCarStats = {
-    avgMpg: undefined,
-    allYearStats: undefined,
-    ratioHybrids: undefined,
-};
 
+export const allCarStats = {
+    avgMpg: {
+        city: mpg_data.reduce( function ( acc, obj ) {
+            return acc + obj.city_mpg;
+        }, 0) / mpg_data.length,
+        highway: mpg_data.reduce( function ( acc, obj ) {
+            return acc + obj.highway_mpg;
+        }, 0) / mpg_data.length
+    },
+    allYearStats: getStatistics(mpg_data.reduce(function ( acc, obj ) {
+        acc.push(obj.year);
+        return acc;
+    }, [])),
+    ratioHybrids: (mpg_data.filter(car => car["hybrid"] == true).length)/(mpg_data.length),
+};
 
 /**
  * HINT: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce
@@ -84,6 +94,49 @@ export const allCarStats = {
  * }
  */
 export const moreStats = {
-    makerHybrids: undefined,
-    avgMpgByYearAndHybrid: undefined
+    makerHybrids: mpg_data.reduce( function ( acc, obj ) {
+        let maker = obj.make
+        if (acc.indexOf(maker)>=0) {
+            return acc;
+        }
+        let ids = mpg_data.reduce( function ( acc2, obj2 ) {
+            let isHybrid = obj2.hybrid;
+            if (isHybrid && maker == obj2.make) {
+                acc2.push(obj2.id);
+            }
+            return acc2;
+        }, [])
+        let newObj = {"make": maker, "hybrids": ids};
+        acc.push(newObj);
+        return acc;
+    }, []),
+    avgMpgByYearAndHybrid: mpg_data.reduce( function ( acc, obj ) {
+        let year = obj.year;
+
+        if (acc[year.toString()] != undefined) {
+            return acc;
+        }
+
+        let hybrids = mpg_data.filter(car => car.year == year && car.hybrid == true);
+        let noHybrids = mpg_data.filter(car => car.year == year && car.hybrid == false);
+
+        let hybridsCityMpg = hybrids.reduce( function ( acc2, obj2 ) {
+            return acc2 + obj2.city_mpg;
+        }, 0) / hybrids.length;
+        let hybridsHighwayMpg = hybrids.reduce( function ( acc2, obj2 ) {
+            return acc2 + obj2.highway_mpg;
+        }, 0) / hybrids.length;
+
+        let noHybridsCityMpg = noHybrids.reduce( function ( acc2, obj2 ) {
+            return acc2 + obj2.city_mpg;
+        }, 0) / noHybrids.length;
+        let noHybridsHighwayMpg = noHybrids.reduce( function ( acc2, obj2 ) {
+            return acc2 + obj2.highway_mpg;
+        }, 0) / noHybrids.length;
+
+        let mpgs = {"hybrid": {"city": hybridsCityMpg, "highway": hybridsHighwayMpg}, "notHybrid": {"city": noHybridsCityMpg, "highway": noHybridsHighwayMpg}};
+        
+        acc[year.toString()] = mpgs;
+        return acc;
+    }, {}),
 };
